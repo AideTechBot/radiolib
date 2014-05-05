@@ -41,12 +41,11 @@ class Radio:
 
 		#encoding it into sound
 		p1 = Popen(["echo", "-e", data], stdout=PIPE)
-		p2 = Popen(["sudo", "./minimodem", "--tx", "-8", "-R", "18000", "-f", "send.wav", baud])
+		p2 = Popen(["sudo", "./minimodem", "--tx", "-8", "-R", "18000", "-f", "send.wav", baud], stdin=p1.stdout, stdout=PIPE)
 
 		#sending it with pifmdma
-		cmd = "./PiFmDma" + " send.wav " + freq
-		print cmd
-		call([cmd])
+		call(["./PiFmDma", " send.wav ", freq])
+
 	#listening on a frequency
 	def listen(self, freq):
 		if not self.RTLFM_installed:
