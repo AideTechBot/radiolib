@@ -44,7 +44,7 @@ class Radio:
 		p2 = Popen(["sudo", "./minimodem", "--tx", "-8", "-R", "18000", "-f", "send.wav", baud], stdin=p1.stdout, stdout=PIPE)
 
 		#sending it with pifmdma
-		call(["./PiFmDma", " send.wav ", freq])
+		call(["./PiFmDma", "send.wav", freq])
 
 	#listening on a frequency
 	def listen(self, freq):
