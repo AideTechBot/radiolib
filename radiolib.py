@@ -15,20 +15,20 @@ class Radio:
 		PiFmDma_installed = True
 		RTLFM_installed = True
 
-		status, result = commands.getstatusoutput("./minimodem")
+		status, result = commands.getstatusoutput("which ./minimodem")
 		if status > 0:
 			raise OSError("Minimodem not found")
 
-		status, result = commands.getstatusoutput("rtl_fm")
+		status, result = commands.getstatusoutput("which rtl_fm")
 		if status > 0:
 			print "[WARNING] RLT_FM not found."
 			RTLFM_installed = False
 
-		status, result = commands.getstatusoutput("aplay")
+		status, result = commands.getstatusoutput("which aplay")
 		if status > 0:
 			raise OSError("Aplay not found")
 
-		status, result = commands.getstatusoutput("./PiFmDma")
+		status, result = commands.getstatusoutput("which ./PiFmDma")
 		if status > 0:
 			print "[WARNING] PiFmDma not found"
 			PiFmDma_installed = False
@@ -45,14 +45,13 @@ class Radio:
 
 		#sending it with pifmdma
 		call(["./PiFmDma",freq])
-		
-
 	#listening on a frequency
 	def listen(self, freq):
 		if not RTLFM_installed:
 			raise OSError("RTL_FM is not installed: Cannot listen")
+	"""
 	#reading one char only
 	def read_char(self,pos):
-
 	#reading a line 
 	def read_line(self):
+	"""
