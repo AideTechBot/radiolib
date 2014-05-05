@@ -6,6 +6,7 @@ a library for sending and receiving data with a raspberry pi (basically just a w
 written by Aidetechbot
 """
 import commands
+from subprocess import *
 
 class Radio:
 	#initialization
@@ -34,9 +35,18 @@ class Radio:
 
 
 	#sending something over a freqency
-	def send(self, message, freq):
+	def send(self, message, freq, baud):
 		if not PiFmDma_installed:
 			raise OSError("PiFmDma is not installed: Cannot transmit")
+
+		#encoding it into sound
+		p1 = Popen(["echo", "-e", data], stdout=PIPE)
+		p2 = Popen(["sudo", "./minimodem", "--tx", "-8", "-R", "18000", "-f", "send.wav", baud])
+
+		#sending it with pifmdma
+		call(["./PiFmDma",freq])
+		
+
 	#listening on a frequency
 	def listen(self, freq):
 		if not RTLFM_installed:
