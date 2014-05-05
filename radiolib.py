@@ -12,8 +12,8 @@ class Radio:
 	#initialization
 	def __init__(self):
 
-		PiFmDma_installed = True
-		RTLFM_installed = True
+		self.PiFmDma_installed = True
+		self.RTLFM_installed = True
 
 		status, result = commands.getstatusoutput("which ./minimodem")
 		if status > 0:
@@ -22,7 +22,7 @@ class Radio:
 		status, result = commands.getstatusoutput("which rtl_fm")
 		if status > 0:
 			print "[WARNING] RLT_FM not found."
-			RTLFM_installed = False
+			self.RTLFM_installed = False
 
 		status, result = commands.getstatusoutput("which aplay")
 		if status > 0:
@@ -31,12 +31,12 @@ class Radio:
 		status, result = commands.getstatusoutput("which ./PiFmDma")
 		if status > 0:
 			print "[WARNING] PiFmDma not found"
-			PiFmDma_installed = False
+			self.PiFmDma_installed = False
 
 
 	#sending something over a freqency
 	def send(self, message, freq, baud):
-		if not PiFmDma_installed:
+		if not self.PiFmDma_installed:
 			raise OSError("PiFmDma is not installed: Cannot transmit")
 
 		#encoding it into sound
@@ -47,7 +47,7 @@ class Radio:
 		call(["./PiFmDma",freq])
 	#listening on a frequency
 	def listen(self, freq):
-		if not RTLFM_installed:
+		if not self.RTLFM_installed:
 			raise OSError("RTL_FM is not installed: Cannot listen")
 	"""
 	#reading one char only
