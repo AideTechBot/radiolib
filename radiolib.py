@@ -35,7 +35,7 @@ class Radio:
 
 
 	#sending something over a freqency
-	def send(self, message, freq, baud):
+	def send(self, data, freq, baud):
 		if not self.PiFmDma_installed:
 			raise OSError("PiFmDma is not installed: Cannot transmit")
 
