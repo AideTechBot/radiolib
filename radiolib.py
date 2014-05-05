@@ -44,7 +44,7 @@ class Radio:
 		p2 = Popen(["sudo", "./minimodem", "--tx", "-8", "-R", "18000", "-f", "send.wav", baud])
 
 		#sending it with pifmdma
-		call(["./PiFmDma",freq])
+		call(["./PiFmDma","send.wav",freq])
 	#listening on a frequency
 	def listen(self, freq):
 		if not self.RTLFM_installed:
