@@ -51,8 +51,3 @@ class Radio:
 		if not self.RTLFM_installed:
 			raise OSError("RTL_FM is not installed: Cannot listen")
 		
-	#reading one char only
-	def read_char(self,pos):
-		
-	#reading a line 
-	def read_line(self):
