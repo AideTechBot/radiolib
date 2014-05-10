@@ -50,4 +50,4 @@ class Radio:
 	def listen(self, freq):
 		if not self.RTLFM_installed:
 			raise OSError("RTL_FM is not installed: Cannot listen")
-		
+		#rtl_fm -f 103.3e6 -W -s 200000 -r 48000 - | aplay -r 48k -f S16_LE
